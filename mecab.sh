@@ -64,7 +64,7 @@ fi
 
 install_mecab_ko(){
     cd /tmp
-    curl -LO https://github.com/jeonsworld/mecab/blob/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz
+    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz
     tar zxfv mecab-0.996-ko-0.9.2.tar.gz
     cd mecab-0.996-ko-0.9.2
     ./configure
@@ -136,7 +136,7 @@ install_automake(){
 install_mecab_ko_dic(){
     echo "Install mecab-ko-dic"
     cd /tmp
-    curl -LO https://github.com/jeonsworld/mecab/blob/main/mecab-ko-dic/mecab-ko-dic-2.1.1-20180720.tar.gz
+    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko-dic/mecab-ko-dic-2.1.1-20180720.tar.gz
     tar -zxvf mecab-ko-dic-2.1.1-20180720.tar.gz
     cd mecab-ko-dic-2.1.1-20180720
     ./autogen.sh
