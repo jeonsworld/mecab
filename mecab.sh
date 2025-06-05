@@ -67,6 +67,12 @@ install_mecab_ko(){
     curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz
     tar zxfv mecab-0.996-ko-0.9.2.tar.gz
     cd mecab-0.996-ko-0.9.2
+
+    # 최신 config 파일들로 업데이트
+    curl -o config.guess 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
+    curl -o config.sub 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
+    chmod +x config.guess config.sub
+
     ./configure
     make
     make check
