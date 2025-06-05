@@ -64,8 +64,8 @@ fi
 
 install_mecab_ko(){
     cd /tmp
-    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz
-    tar zxfv mecab-0.996-ko-0.9.2.tar.gz
+    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz 2>/dev/null
+    tar --warning=no-unknown-keyword -zxfv mecab-0.996-ko-0.9.2.tar.gz
     cd mecab-0.996-ko-0.9.2
 
     # 최신 config 파일들로 업데이트
