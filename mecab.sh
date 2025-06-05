@@ -151,16 +151,11 @@ install_mecab_ko_dic(){
 }
 
 install_mecab_python(){
-    pushd /tmp
-    if [[ ! -d "mecab-python-0.996" ]]; then
-        git clone https://bitbucket.org/eunjeon/mecab-python-0.996.git
-    fi
-    popd
     if [[ "$os" == "Darwin" ]]; then
-        CFLAGS=-stdlib=libc++ $python -m pip install $at_user_site /tmp/mecab-python-0.996
+        CFLAGS=-stdlib=libc++ $python -m pip install $at_user_site mecab-python3
     else
         # the gcc compiler has no such commandline option as -stdilb, so let's not use it. See discussion on #391.
-        $python -m pip install $at_user_site /tmp/mecab-python-0.996
+        $python -m pip install $at_user_site mecab-python3
     fi
 }
 
