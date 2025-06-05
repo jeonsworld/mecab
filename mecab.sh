@@ -64,15 +64,9 @@ fi
 
 install_mecab_ko(){
     cd /tmp
-    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko/mecab-0.996-ko-0.9.2.tar.gz 2>/dev/null
-    tar --warning=no-unknown-keyword -zxfv mecab-0.996-ko-0.9.2.tar.gz
-    cd mecab-0.996-ko-0.9.2
-
-    # 최신 config 파일들로 업데이트
-    curl -o config.guess 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
-    curl -o config.sub 'https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
-    chmod +x config.guess config.sub
-
+    curl -LO https://bitbucket.org/eunjeon/mecab-ko/get/908db8de3cb5.zip
+    unzip 908db8de3cb5.zip
+    cd eunjeon-mecab-ko-908db8de3cb5
     ./configure
     make
     make check
@@ -142,9 +136,9 @@ install_automake(){
 install_mecab_ko_dic(){
     echo "Install mecab-ko-dic"
     cd /tmp
-    curl -LO https://github.com/jeonsworld/mecab/raw/refs/heads/main/mecab-ko-dic/mecab-ko-dic-2.1.1-20180720.tar.gz
-    tar -zxvf mecab-ko-dic-2.1.1-20180720.tar.gz
-    cd mecab-ko-dic-2.1.1-20180720
+    curl -LO https://bitbucket.org/eunjeon/mecab-ko-dic/get/df15a487444d.zip
+    unzip df15a487444d.zip
+    cd eunjeon-mecab-ko-dic-df15a487444d
     ./autogen.sh
     ./configure
     if [[ $os == "Linux" ]]; then
@@ -157,11 +151,16 @@ install_mecab_ko_dic(){
 }
 
 install_mecab_python(){
+    pushd /tmp
+    if [[ ! -d "mecab-python-0.996" ]]; then
+        git clone https://bitbucket.org/eunjeon/mecab-python-0.996.git
+    fi
+    popd
     if [[ "$os" == "Darwin" ]]; then
-        CFLAGS=-stdlib=libc++ $python -m pip install $at_user_site mecab-python3
+        CFLAGS=-stdlib=libc++ $python -m pip install $at_user_site /tmp/mecab-python-0.996
     else
         # the gcc compiler has no such commandline option as -stdilb, so let's not use it. See discussion on #391.
-        $python -m pip install $at_user_site mecab-python3
+        $python -m pip install $at_user_site /tmp/mecab-python-0.996
     fi
 }
 
